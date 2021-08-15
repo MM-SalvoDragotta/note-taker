@@ -5,9 +5,6 @@ const path = require('path');
 // Point Server to the route files
 const api = require('./routes/index.js');
 
-// const htmlRouter = require('./routes/htmlRouter')
-// const notesRouter = require('./routes/notesRouter');
-
 const PORT = process.env.port || 3001;
 // Create an express server
 const app = express();
@@ -17,10 +14,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-// app.use('/api/notes', api)
-// app.use('/', api);
-
 app.use(api);
+
+// Wildcard route to direct users to index.html
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
 
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
