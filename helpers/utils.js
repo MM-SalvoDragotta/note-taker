@@ -16,7 +16,7 @@ function getNotes() {
 function newNote (note) {
     const {title , text} = note;
     const newNote = { title, text, id: uuidv4()};
-    console.log(newNote);
+    // console.log(newNote);
     return getNotes()
         .then(notes => [...notes, newNote])
         .then(notes => writeToDb('db/db.json', JSON.stringify(notes , null , 4)))
@@ -24,7 +24,9 @@ function newNote (note) {
 }
 
 function deleteNote(id) {
-    console.warn ('Implement delete note') 
+    return getNotes()
+    .then(notes => notes.filter(note => note.id !== id))
+    .then(notes => writeToDb('db/db.json', JSON.stringify(notes , null , 4)));
 }
 
 module.exports = {getNotes, newNote, deleteNote }
