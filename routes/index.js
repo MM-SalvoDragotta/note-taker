@@ -7,6 +7,6 @@ const notesRouter = require('./notesRouter');
 const app = express();
 
 app.use('/', htmlRouter);
-app.use('/api/notes', notesRouter);
+app.use('/api', notesRouter);
 
 module.exports = app;
