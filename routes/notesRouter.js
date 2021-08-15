@@ -1,25 +1,20 @@
 const notes = require('express').Router();
+const fs = require('fs');
 const utils = require('../helpers/utils');
 
 // GET 
-notes.get('/api/notes', function (req, res) {
-    console.log(`${req.method} request received to get notes`);
-    utils.getNotes()
-        .then(note => res.json(note))        
-});
+notes.get('/api/notes',  (req, res) => {
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        if (err) {
+          console.log(err);
+        } else {
+          // Convert string into JSON object
+          const parsedNotes = JSON.parse(data);
+          // parsed notes is the response
+          res.json(parsedNotes)
+        }
+      });
+    })
 
-// POST
-notes.post('/notes', (req, res) => {
-    console.log(`${req.method} request received to add a note`);
-    utils.newNote(req.body)
-        .then((note) => res.json(note))
-});
-
-// DELETE
-notes.delete('/notes/:id', function (req, res) {
-    console.log(`${req.method} request received to delete a note`);
-    utils.deleteNote(req.params.id)
-        .then(() => res.json({ ok: true }))
-});
 
 module.exports = notes;

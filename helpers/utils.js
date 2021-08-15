@@ -8,19 +8,7 @@ const readFromJson = util.promisify(fs.readFile);
 const writeToJson = util.promisify(fs.writeFile);
 
 function getNotes () {
- return readFromJson (notesDb)
-    .then(notes => {
-        let parsedNotes;
-        try {
-            parsedNotes = [].concat(JSON.parse(notes));
-        } catch (err) {
-            console.log(err)
-            parsedNotes = [];
-        }
-        return parsedNotes;
-    });
 }
-
 
 function newNote (body) {
     console.log ('Implement new note')
