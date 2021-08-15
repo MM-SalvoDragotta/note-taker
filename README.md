@@ -23,7 +23,7 @@
 
 ## Description
 
-This application uses an [Express.js](https://www.npmjs.com/package/express) back end to save and retrieve note data from a JSON file. This app is also live on [ Heroku]() .
+This application uses an [Express.js](https://www.npmjs.com/package/express) back end to save and retrieve note data from a JSON file. This app is also live on [ Heroku](https://note-taker-deployed.herokuapp.com/) .
 
 The following animation shows the Note Taker appearance and functionality:
 
