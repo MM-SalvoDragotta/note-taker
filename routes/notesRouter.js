@@ -2,7 +2,7 @@ const notes = require('express').Router();
 const utils = require('../helpers/utils');
 
 // GET 
-notes.get('/notes', function (req, res) {
+notes.get('/api/notes', function (req, res) {
     console.log(`${req.method} request received to get notes`);
     utils.getNotes()
         .then(note => res.json(note))        
